@@ -7,7 +7,7 @@ const readFile = async () => {
     const caminho = path.join(__dirname, caminhoRelativo);
     const talkers = await fs.readFile(caminho, 'utf-8');
     const result = JSON.parse(talkers);
-    return result
+    return result;
  } catch (error) {
     console.log(`Arquivo não pode ser lido, erro: ${error}`);
  }
