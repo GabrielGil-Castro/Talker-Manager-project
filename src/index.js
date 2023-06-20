@@ -1,6 +1,7 @@
 const express = require('express');
 const crypto = require('crypto');
 const { readFile } = require('./utils/readFiles');
+const { validateLogin } = require('./utils/validateInputs');
 
 const app = express();
 app.use(express.json());
@@ -34,7 +35,7 @@ app.get('/talker/:id', async (req, res) => {
   return res.status(HTTP_OK_STATUS).json(findTalkerById);
 });
 
-app.post('/login', async (req, res) => {
+app.post('/login', validateLogin, async (req, res) => {
   const { email, password } = req.body;
   const token = crypto.randomBytes(8).toString('hex');
   if (email && password) return res.status(HTTP_OK_STATUS).json({ token });
