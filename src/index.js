@@ -13,8 +13,6 @@ const { validateLogin,
 const app = express();
 app.use(express.json());
 
-// fazendo comementário para adicionar commit
-
 const HTTP_OK_STATUS = 200;
 const PORT = process.env.PORT || '3001';
 
@@ -42,7 +40,7 @@ app.get('/talker', async (req, res) => {
 });
 
 app.get('/talker/:id', async (req, res) => {
-  const talkers = await writeFile();
+  const talkers = await readFile();
   const { id } = req.params;
   const findTalkerById = talkers.find((talker) => talker.id === Number(id));
   if (!findTalkerById) {
